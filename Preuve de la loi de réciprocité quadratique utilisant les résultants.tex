@@ -1,0 +1,110 @@
+\subsection{Preuve de la loi de réciprocité quadratique utilisant les résultants}
+
+Rappelons que la loi de réciprocité quadratique est une égalité entre deux
+signes ; l'idée est alors d'utiliser la relation suivante sur les résultants
+\[
+\operatorname{Res}(P,Q)
+=
+(-1)^{\deg P \times \deg Q}\operatorname{Res}(Q,P),
+\]
+pour des polynômes \(P\) et \(Q\) de degrés respectifs \((p-1)/2\) et
+\((q-1)/2\), où \(p\) et \(q\) sont des premiers impairs distincts, de sorte que
+\[
+\operatorname{Res}(P,Q)=\left(\frac{p}{q}\right)
+\qquad\text{et}\qquad
+\operatorname{Res}(Q,P)=\left(\frac{q}{p}\right).
+\]
+
+\subsubsection{Lemme}
+
+\textit{Pour tout \(p\) premier impair, il existe \(Q_p\in\mathbb{Z}[X]\) tel que}
+\[
+X^{p-1}+X^{p-2}+\cdots+X+1
+=
+X^{(p-1)/2}Q_p\left(X+\frac{1}{X}\right).
+\]
+\textit{En outre, modulo \(p\), on a}
+\[
+Q_p(Y)\equiv (Y-2)^{\frac{p-1}{2}}\pmod p.
+\]
+
+\begin{proof}
+En posant \(Y=X^{-1}\), on cherche \(Q_p\) tel que
+\[
+Q_p(X+Y)
+=
+X^{(p-1)/2}+\cdots+X+1+Y+\cdots+Y^{(p-1)/2}.
+\]
+Le polynôme étant symétrique, il existe \(R\in\mathbb{Z}[X,Y]\) tel que le
+membre de droite de l'égalité ci-dessus est égal à \(R(X+Y,XY)\). En notant
+que \(XY=1\), il suffit alors de poser
+\[
+Q_p(X)=R(X,1).
+\]
+Raisonnons alors modulo \(p\) :
+\begin{align*}
+X^{p-1}+\cdots+X+1
+&\equiv (X-1)^{p-1} \\
+&\equiv (X^2-2X+1)^{(p-1)/2} \\
+&\equiv
+X^{(p-1)/2}
+\left(X+\frac{1}{X}-2\right)^{(p-1)/2}
+\pmod p.
+\end{align*}
+Soit
+\[
+Q_p\left(X+\frac{1}{X}\right)
+\equiv
+\left(X+\frac{1}{X}-2\right)^{(p-1)/2}
+\pmod p,
+\]
+et
+\[
+Q_p(X)\equiv (X-2)^{(p-1)/2}\pmod p.
+\]
+\end{proof}
+
+\subsubsection{Lemme}
+
+\textit{Pour \(p\neq q\) des nombres premiers impairs, le résultant de
+\(Q_p\) et \(Q_q\) est égal à \(\pm1\).}
+
+\begin{proof}
+Raisonnons par l'absurde et soit \(\ell\) premier divisant
+\(\operatorname{Res}(Q_p,Q_q)\), de sorte que modulo \(\ell\), \(Q_p\) et
+\(Q_q\) ont une racine commune
+\[
+\beta\in\mathbb{F}_{\ell^n},
+\]
+où l'entier \(n\) est inférieur ou égal à
+\[
+\min\left\{\frac{p-1}{2},\frac{q-1}{2}\right\}.
+\]
+
+Soit alors \(x \in \overline{\mathbb{F}}_\ell\) tel que
+\[
+x^2-\beta x+1=0.
+\]
+Alors
+\[
+x^{p-1}+\cdots+x+1
+=
+x^{(p-1)/2}\overline{Q}_p(\beta)
+=
+0.
+\]
+
+En multipliant cette égalité par \(x-1\), on en déduit que
+\[
+x^p=1
+\]
+dans \(\overline{\mathbb{F}}_\ell\). De la même façon, on a aussi
+\[
+x^q=1.
+\]
+Comme \(p\wedge q=1\), il vient \(x=1\), et donc
+\[
+p\equiv q\equiv 0 \pmod \ell,
+\]
+ce qui n'est pas possible, car \(p\wedge q=1\).
+\end{proof}
