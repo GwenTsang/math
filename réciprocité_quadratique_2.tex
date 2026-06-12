@@ -1,0 +1,328 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemme}
+
+\newcommand{\Res}{\operatorname{Res}}
+
+\begin{document}
+
+\subsection{Preuve de la loi de réciprocité quadratique à l'aide des résultants}
+
+Soient \(p\) et \(q\) deux nombres premiers impairs distincts. Posons
+\[
+m=\frac{p-1}{2}
+\qquad\text{et}\qquad
+n=\frac{q-1}{2}.
+\]
+Nous allons construire des polynômes \(Q_p,Q_q\in\mathbb{Z}[X]\) de degrés
+respectifs \(m\) et \(n\), puis utiliser la relation
+\[
+\Res(P,Q)
+=
+(-1)^{\deg(P)\deg(Q)}\Res(Q,P).
+\]
+
+\subsubsection{Premier lemme}
+
+\begin{lemma}
+Pour tout nombre premier impair \(p\), il existe un polynôme unitaire
+\(Q_p\in\mathbb{Z}[T]\), de degré \((p-1)/2\), tel que
+\[
+1+X+\cdots+X^{p-1}
+=
+X^{(p-1)/2}Q_p\left(X+\frac{1}{X}\right).
+\]
+De plus,
+\[
+Q_p(T)\equiv (T-2)^{(p-1)/2}\pmod p
+\]
+et
+\[
+Q_p(2)=p.
+\]
+\end{lemma}
+
+\begin{proof}
+Posons \(m=(p-1)/2\). Après division par \(X^m\), l'identité recherchée
+s'écrit
+\[
+Q_p\left(X+\frac{1}{X}\right)
+=
+X^m+X^{m-1}+\cdots+X+1
++X^{-1}+\cdots+X^{-m}.
+\]
+
+Considérons le polynôme symétrique
+\[
+S_m(U,V)
+=
+U^m+U^{m-1}+\cdots+U+1+V+\cdots+V^{m-1}+V^m.
+\]
+Comme \(S_m\) est symétrique en \(U\) et \(V\), il existe
+\(R_m\in\mathbb{Z}[A,B]\) tel que
+\[
+S_m(U,V)=R_m(U+V,UV).
+\]
+En prenant \(U=X\) et \(V=X^{-1}\), on obtient
+\[
+S_m\left(X,X^{-1}\right)
+=
+R_m\left(X+\frac{1}{X},1\right).
+\]
+Il suffit donc de poser
+\[
+Q_p(T)=R_m(T,1).
+\]
+Le polynôme \(Q_p\) est unitaire de degré \(m\).
+
+Montrons maintenant la congruence modulo \(p\). Dans
+\(\mathbb{F}_p[X]\), on a
+\[
+1+X+\cdots+X^{p-1}
+=
+\frac{X^p-1}{X-1}
+\equiv
+\frac{(X-1)^p}{X-1}
+=
+(X-1)^{p-1}.
+\]
+Comme \(p-1=2m\), il vient
+\begin{align*}
+1+X+\cdots+X^{p-1}
+&\equiv (X-1)^{2m} \\
+&=(X^2-2X+1)^m \\
+&=X^m\left(X+\frac{1}{X}-2\right)^m
+\pmod p.
+\end{align*}
+D'autre part,
+\[
+1+X+\cdots+X^{p-1}
+=
+X^mQ_p\left(X+\frac{1}{X}\right).
+\]
+Puisque \(X\) est inversible dans
+\(\mathbb{F}_p[X,X^{-1}]\), on en déduit
+\[
+Q_p\left(X+\frac{1}{X}\right)
+\equiv
+\left(X+\frac{1}{X}-2\right)^m
+\pmod p.
+\]
+
+L'application
+\[
+\begin{aligned}
+\mathbb{F}_p[T]&\longrightarrow\mathbb{F}_p[X,X^{-1}],\\
+F(T)&\longmapsto F\left(X+\frac{1}{X}\right)
+\end{aligned}
+\]
+étant injective, on obtient
+\[
+Q_p(T)\equiv(T-2)^m\pmod p.
+\]
+
+Enfin, en évaluant l'identité initiale en \(X=1\), on trouve
+\[
+p=Q_p(2).
+\]
+\end{proof}
+
+\subsubsection{Deuxième lemme}
+
+\begin{lemma}
+Pour deux nombres premiers impairs distincts \(p\) et \(q\), on a
+\[
+\Res(Q_p,Q_q)=\pm1.
+\]
+\end{lemma}
+
+\begin{proof}
+Montrons d'abord que \(Q_p\) et \(Q_q\) n'ont aucune racine commune dans
+\(\mathbb{C}\).
+
+Supposons qu'il existe \(\beta\in\mathbb{C}\) telle que
+\[
+Q_p(\beta)=Q_q(\beta)=0.
+\]
+Choisissons \(x\in\mathbb{C}^{\times}\) vérifiant
+\[
+x+\frac{1}{x}=\beta,
+\]
+c'est-à-dire
+\[
+x^2-\beta x+1=0.
+\]
+D'après le premier lemme,
+\[
+1+x+\cdots+x^{p-1}
+=
+x^mQ_p(\beta)
+=
+0.
+\]
+En multipliant par \(x-1\), on obtient
+\[
+x^p=1.
+\]
+De même,
+\[
+x^q=1.
+\]
+Comme \(\gcd(p,q)=1\), il vient \(x=1\). Mais alors
+\[
+1+x+\cdots+x^{p-1}=p\neq0,
+\]
+ce qui est contradictoire. Ainsi,
+\[
+\Res(Q_p,Q_q)\neq0.
+\]
+
+Posons
+\[
+R=\Res(Q_p,Q_q)\in\mathbb{Z}.
+\]
+Supposons qu'un nombre premier \(\ell\) divise \(R\). Les réductions de
+\(Q_p\) et \(Q_q\) modulo \(\ell\) possèdent alors une racine commune
+\[
+\beta\in\overline{\mathbb{F}}_{\ell}.
+\]
+Choisissons \(x\in\overline{\mathbb{F}}_{\ell}\) tel que
+\[
+x^2-\beta x+1=0.
+\]
+Puisque le terme constant de ce polynôme est \(1\), on a \(x\neq0\), et
+\[
+\beta=x+\frac{1}{x}.
+\]
+
+D'après les identités définissant \(Q_p\) et \(Q_q\),
+\[
+1+x+\cdots+x^{p-1}
+=
+x^m\overline{Q}_p(\beta)
+=
+0
+\]
+et
+\[
+1+x+\cdots+x^{q-1}
+=
+x^n\overline{Q}_q(\beta)
+=
+0,
+\]
+où \(\overline{Q}_p\) et \(\overline{Q}_q\) désignent les réductions
+respectives de \(Q_p\) et \(Q_q\) modulo \(\ell\).
+
+En multipliant respectivement par \(x-1\), on obtient
+\[
+x^p=1
+\qquad\text{et}\qquad
+x^q=1.
+\]
+Comme \(\gcd(p,q)=1\), on en déduit \(x=1\). Les deux sommes précédentes
+donnent alors
+\[
+p=0
+\qquad\text{et}\qquad
+q=0
+\]
+dans \(\overline{\mathbb{F}}_{\ell}\). Ainsi,
+\[
+\ell\mid p
+\qquad\text{et}\qquad
+\ell\mid q,
+\]
+ce qui est impossible puisque \(p\neq q\).
+
+Aucun nombre premier ne divise donc l'entier non nul \(R\). Par conséquent,
+\[
+R=\pm1.
+\]
+\end{proof}
+
+\subsubsection{Conclusion}
+
+Posons
+\[
+R=\Res(Q_p,Q_q).
+\]
+D'après le deuxième lemme,
+\[
+R\in\{-1,1\}.
+\]
+
+Réduisons d'abord le résultant modulo \(p\). Le premier lemme donne
+\[
+Q_p(T)\equiv(T-2)^m\pmod p.
+\]
+Comme le résultant est une expression polynomiale à coefficients entiers
+en les coefficients des deux polynômes, on obtient
+\begin{align*}
+R
+&\equiv
+\Res\left((T-2)^m,Q_q(T)\right) \\
+&=
+Q_q(2)^m \\
+&=
+q^m
+\pmod p.
+\end{align*}
+Par le critère d'Euler,
+\[
+q^m
+=
+q^{(p-1)/2}
+\equiv
+\left(\frac{q}{p}\right)
+\pmod p.
+\]
+Ainsi,
+\[
+R\equiv\left(\frac{q}{p}\right)\pmod p.
+\]
+Les deux membres appartenant à \(\{-1,1\}\), on en déduit
+\[
+R=\left(\frac{q}{p}\right).
+\]
+
+En échangeant les rôles de \(p\) et de \(q\), on obtient de même
+\[
+\Res(Q_q,Q_p)
+=
+\left(\frac{p}{q}\right).
+\]
+Or les degrés de \(Q_p\) et \(Q_q\) sont respectivement \(m\) et \(n\), donc
+\[
+\Res(Q_q,Q_p)
+=
+(-1)^{mn}\Res(Q_p,Q_q).
+\]
+Par conséquent,
+\[
+\left(\frac{p}{q}\right)
+=
+(-1)^{mn}\left(\frac{q}{p}\right).
+\]
+Puisque
+\[
+m=\frac{p-1}{2}
+\qquad\text{et}\qquad
+n=\frac{q-1}{2},
+\]
+on obtient finalement
+\[
+\boxed{
+\left(\frac{p}{q}\right)
+\left(\frac{q}{p}\right)
+=
+(-1)^{\frac{p-1}{2}\frac{q-1}{2}}
+}.
+\]
+Ce qui correspond à la loi de la réciprocité quadratique.
+\end{document}
